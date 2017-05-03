@@ -1,0 +1,16 @@
+.user {
+    position: absolute;
+}
+.usericon {
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+}
+.username {
+    font-family: Segoe UI;
+    font-weight: 400;
+    max-width: 20ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: rgb(185, 185, 185);
+}

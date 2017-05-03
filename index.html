@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" type="text/css" href="resources/index.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/main.css">
+        <!--<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>-->
+        <script type='text/javascript' src='./resources/jquery-3.1.1.min.js'></script>
+        <meta charset="UTF-8">
+        <title>Testing!</title>
+    </head>
+    <body>
+        <span class="invisible" id="debug">
+            <h3 id="axis0">0</h3>
+            <h3 id="axis1">0</h3>
+            <h3 id="axis2">0</h3>
+            <h3 id="axis3">0</h3>
+            <h3 id="axisReal0">0</h3>
+            <h3 id="axisReal2">0</h3>
+            <h5 class="debug-username">No-Name</h5>
+        </span>
+        <span class="cover">
+            <!--Top-->
+            <div class="user">
+                <span class="push1"></span>
+                <image class="usericon"></image>
+                <h4 class="username">No-Name</h4>
+            </div>
+            <span class="top">
+                <div class="sprbtn1">
+                    <span class="push1"></span>
+                    <!--<image src="resources/icons/ICON-friends.png"><button></button></image>-->
+                    <!--<image src="resources/icons/ICON-friends.png"><button></button></image>-->
+                </div>
+                <div class="sprbtn2">
+                    <div><a title="Home"><button id="btn-home">Home</button></a></div>
+                    <div><a title="Pins"><button id="btn-pins">Pins</button></a></div>
+                </div>
+            </span>
+            <span class="icons">
+                <span class="push1"></span>
+                <div></div>
+            </span>
+        </span>
+
+    </body>
+
+    <script>
+        const main = require('./renderer.js');
+        const $ = require('jquery');
+        main.loadConfig((_callback) => {
+            if(!_callback["firstTime"])
+                main.loadHTML("body", "_firsttime");
+            else
+                main.loadHTML(".user", "user");
+        });
+    </script>
+    <script type="text/javascript" src="./resources/js/alerts.js"></script>
+    <script type="text/javascript" src="./resources/js/internal.js"></script>
+</html>

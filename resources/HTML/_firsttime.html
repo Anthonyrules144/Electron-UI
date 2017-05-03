@@ -1,0 +1,96 @@
+<div>
+    <div id="progress">
+        <span id="progress0"></span>
+        <span id="progress1"></span>
+        <span id="progress2"></span>
+    </div>
+    <h3 id="welcome">Welcome</h3>
+    <h4 id="whatisyourname">What would you like your username to be?</h4>
+    <input id="input0" type="text" name="username"></input>
+    <input id="inputconfirm" type="submit" text="Confirm" onClick="onConfirm();"></input>
+</div>
+
+<script>
+    var readyToConfirm = false;
+    $("#welcome").animate({opacity: 0}, 5000, () => {
+        $("#welcome").text("Let's get started...");
+        $("#welcome").animate({opacity: 1}, 1500, () => {
+            $("#whatisyourname").animate({opacity: 1}, 1500, () => {
+                $("#input0").animate({opacity: 1}, 2000);
+                $("#input0").css({cursor: "text"});
+                $("#inputconfirm").animate({opacity: 1}, 2000, () => { readyToConfirm = true; });
+            });
+        });
+    });
+    function onConfirm() {
+        if(!readyToConfirm)
+            return console.log("nope");
+        var name = $("#input0").val();
+        if(!name) {
+            const text = $("#whatisyourname");
+            const oldText = text.text();
+            return text.animate({opacity: 0}, 200, () => {
+                text.text("Invalid name");
+                text.animate({opacity: 1}, 200, () => {
+                    setTimeout(() => {
+                        text.animate({opacity: 0}, 200, () => {
+                            text.text(oldText);
+                            text.animate({opacity: 1}, 200);
+                        });
+                    }, 1000);
+                })
+            });
+        } else {
+
+        }
+        console.log(name);
+    }
+    function writeToFile(array) {
+        if(!array.isArray())
+            return console.error("Invalid array type");
+        fs.writeFile("./config/config.json", JSON.stringify(array), (err) => {
+            if(err)
+                console.log(err);
+        });
+    }
+</script>
+<style>
+#progress {
+    top: 15px;
+    width: 10%;
+    height: 2%;
+}
+#progress0 {
+    background-color: rgb(150, 150, 150);
+}
+#welcome {
+    color: rgb(185, 185, 185);
+    text-align: center;
+    top: 10px;
+}
+#whatisyourname {
+    color: rgb(150, 150, 150);
+    top: 35px;
+    text-align: center;
+    opacity: 0;
+}
+#input0 {
+    color: white;
+    cursor: default;
+    color white;
+    display: block;
+    margin: 0 auto;
+     opacity: 0;
+    background-color: rgb(35,35,35);
+    border: 5px 2px;
+    border-color: rgb(70, 75, 70);
+}
+#inputconfirm {
+    display: block;
+    margin: 0 auto;
+     opacity: 0;
+    color: rgb(150, 150, 150);
+    background-color: rgb(75, 75, 75);
+    border-color: rgb(95, 95, 95);
+}
+</style>

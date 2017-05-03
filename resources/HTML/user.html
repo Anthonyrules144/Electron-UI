@@ -1,0 +1,43 @@
+    <h4 class="username">Name</h4>
+    <image class="usericon"></image>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+    main.loadUserInfo("name", (name) => {
+        $(".username").text("Welcome back, " + name);
+        setTimeout(() => {
+            $(".username").animate({opacity: 0}, 1000, () => {
+                $(".username").text(name);
+                $(".username").animate({opacity: 1}, 1000);
+            });
+        }, 5000);
+    });
+    main.loadUserInfo("icon");
+    $(".username").animate({
+        opacity: "1",
+    });
+</script>
+<style>
+.usericon {
+    -webkit-user-select: none;
+    position: fixed;
+    margin-left: 50px;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+}
+.username {
+    opacity: 0;
+    -webkit-user-select: none;
+    position: fixed;
+    margin-left: 115px;
+    margin-top: -3px;
+    font-family: Segoe UI;
+    font-weight: 400;
+    max-width: 43ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: rgb(185, 185, 185);
+}
+.username:hover { cursor: default; }
+.usericon:hover { cursor: default; }
+</style>
